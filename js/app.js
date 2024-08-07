@@ -30,7 +30,6 @@ class Products {
     }
   }
 }
-
 function objectExistenceChecker() {
   if (JSON.parse(localStorage.getItem('totalProducts'))) {
     getLocalStorage();
@@ -48,7 +47,6 @@ function objectExistenceChecker() {
   }
 
 }
-
 function objMaker() {
   if (state.totalProducts.length === 0) {
     for (let i = 0; i < img.length; i++) {
@@ -62,6 +60,7 @@ function objMaker() {
     }
   }
 }
+
 function imgGenerator() {
   const calls = [];
   let leftImg = state.totalProducts[Math.floor(Math.random() * state.totalProducts.length)];
@@ -76,6 +75,7 @@ function imgGenerator() {
   }
   return calls;
 }
+
 function objRender() {
   let call = imgGenerator();
   for (let i = 0; i < 3; i++) {
@@ -94,7 +94,6 @@ function clean() {
     chart.destroy();
   }
 }
-
 function handleClick() {
   for (let i = 0; i < 3; i++) {
     const imgElement = document.getElementById(`opcion${i + 1}`);
@@ -117,7 +116,6 @@ function handleClick() {
   }
 
 }
-
 function getLocalStorage() {
   state.totalProducts = []
   const jsonProductsRecuperados = localStorage.getItem('totalProducts');
@@ -131,7 +129,6 @@ function getLocalStorage() {
   }
 
 }
-
 function renderChart() {
   const ctx = document.getElementById('canvas').getContext('2d');
   const selectedProducts = [];
@@ -148,6 +145,7 @@ function renderChart() {
   if (chart) {
     chart.destroy();
   }
+
   chart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -193,9 +191,23 @@ function renderChart() {
         }
       ]
     },
+    // options: {
+    //     legend: {
+    //         display: false,
+    //     },
+    //     scales: {
+    //         xAxes: [{
+    //             ticks: {
+    //                 stepSize: 1
+    //             },
+    //             gridLines: {
+    //                 display: false,
+    //             },
+    //         }]
+    //     }
+    // }
   });
 }
-
 objectExistenceChecker();
 if (objectExistenceChecker() === true) {
   renderChart();
